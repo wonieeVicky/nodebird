@@ -51,8 +51,8 @@
       axios
         .post("/post/img", formData)
         .then((res) => {
-          document.getElementById("img-url").value = res.data.url;
-          document.getElementById("img-preview").src = res.data.originalUrl;
+          document.getElementById("img-url").value = res.data.url; // 리사이징된 이미지는 url로
+          document.getElementById("img-preview").src = res.data.originalUrl; // 미리보기는 원본으로
           document.getElementById("img-preview").style.display = "inline";
         })
         .catch((err) => {
