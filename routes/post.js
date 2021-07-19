@@ -37,7 +37,10 @@ const upload = multer({
 
 router.post("/img", isLoggedIn, upload.single("img"), (req, res) => {
   console.log(req.file);
-  res.json({ url: req.file.location });
+  const originalUrl = req.file.location;
+  const url = originalUrl.replace(/\/original\//, "/thumb/");
+  res.json({ url, originalUrl }); // 기존 이미지 주소, 리사이징된 주소 둘 다 보내준다.
+  // 이미지 리사이징이 오래 걸릴 경우 기존 이미지라도 보여주기 위함
 });
 
 const upload2 = multer();
